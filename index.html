@@ -13,13 +13,26 @@
         body { font-family: 'Inter', sans-serif; background-color: #0a0a0a; color: #ffffff; }
         .font-display { font-family: 'Oswald', sans-serif; }
         .gradient-text { background: linear-gradient(135deg, #00ff88 0%, #00ccff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .glass-card { background: rgba(255,255,255,0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); }
+        .glass-card { 
+            background: rgba(255,255,255,0.03); 
+            backdrop-filter: blur(10px); 
+            border: 1px solid rgba(255,255,255,0.1); 
+            opacity: 1 !important;
+            transform: none !important;
+        }
         .glow-green { box-shadow: 0 0 30px rgba(0,255,136,0.3); }
         .animate-pulse-slow { animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
         .marquee { animation: marquee 25s linear infinite; }
         @keyframes marquee { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } }
         .sticky-cta { position: fixed; bottom: 0; left: 0; right: 0; z-index: 50; transform: translateY(100%); transition: transform 0.3s; }
         .sticky-cta.visible { transform: translateY(0); }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
     </style>
 </head>
 <body class="antialiased overflow-x-hidden">
@@ -39,7 +52,7 @@
 
     <!-- Hero Section -->
     <section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
-        <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%2300ff88" fill-opacity="0.05"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-20"></div>
+        <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%2300ff88\' fill-opacity=\'0.05\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-20"></div>
         <div class="absolute inset-0 bg-gradient-to-b from-green-500/10 via-transparent to-transparent"></div>
         
         <div class="container mx-auto px-4 relative z-10 text-center">
@@ -114,7 +127,7 @@
     </div>
 
     <!-- What You Get Section -->
-    <section class="py-20 md:py-32">
+    <section class="py-20 md:py-32" id="features">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
                 <h2 class="font-display text-4xl md:text-5xl font-bold mb-4">WHAT YOU GET WITH MVP ACCESS</h2>
@@ -123,7 +136,7 @@
 
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
                 <!-- Card 1 -->
-                <div class="glass-card p-6 rounded-2xl hover:border-green-500/50 transition-all group">
+                <div class="glass-card p-6 rounded-2xl hover:border-green-500/50 transition-all group hover:bg-white/5">
                     <div class="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                         <svg class="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
                     </div>
@@ -132,7 +145,7 @@
                 </div>
 
                 <!-- Card 2 -->
-                <div class="glass-card p-6 rounded-2xl hover:border-green-500/50 transition-all group">
+                <div class="glass-card p-6 rounded-2xl hover:border-green-500/50 transition-all group hover:bg-white/5">
                     <div class="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                         <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
                     </div>
@@ -141,7 +154,7 @@
                 </div>
 
                 <!-- Card 3 -->
-                <div class="glass-card p-6 rounded-2xl hover:border-green-500/50 transition-all group">
+                <div class="glass-card p-6 rounded-2xl hover:border-green-500/50 transition-all group hover:bg-white/5">
                     <div class="w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                         <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
                     </div>
@@ -150,7 +163,7 @@
                 </div>
 
                 <!-- Card 4 -->
-                <div class="glass-card p-6 rounded-2xl hover:border-green-500/50 transition-all group">
+                <div class="glass-card p-6 rounded-2xl hover:border-green-500/50 transition-all group hover:bg-white/5">
                     <div class="w-12 h-12 bg-yellow-500/20 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                         <svg class="w-6 h-6 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
                     </div>
@@ -159,7 +172,7 @@
                 </div>
 
                 <!-- Card 5 -->
-                <div class="glass-card p-6 rounded-2xl hover:border-green-500/50 transition-all group">
+                <div class="glass-card p-6 rounded-2xl hover:border-green-500/50 transition-all group hover:bg-white/5">
                     <div class="w-12 h-12 bg-red-500/20 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                         <svg class="w-6 h-6 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
                     </div>
@@ -168,7 +181,7 @@
                 </div>
 
                 <!-- Card 6 -->
-                <div class="glass-card p-6 rounded-2xl hover:border-green-500/50 transition-all group">
+                <div class="glass-card p-6 rounded-2xl hover:border-green-500/50 transition-all group hover:bg-white/5">
                     <div class="w-12 h-12 bg-pink-500/20 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                         <svg class="w-6 h-6 text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
                     </div>
@@ -407,7 +420,8 @@
         </div>
     </footer>
 
-   
+    <!-- Sticky Bottom CTA -->
+    
 
     <script>
         // Sticky CTA visibility
@@ -434,34 +448,60 @@
             }
         }
 
-        // GSAP Animations
+        // GSAP Animations - Fixed for "What You Get" section
         if (typeof gsap !== 'undefined') {
             gsap.registerPlugin(ScrollTrigger);
             
-            gsap.from('.glass-card', {
-                scrollTrigger: {
-                    trigger: '.glass-card',
-                    start: 'top 80%',
-                },
-                y: 50,
-                opacity: 0,
-                duration: 0.8,
-                stagger: 0.2
+            // Animate "What You Get" cards with proper targeting
+            const featureSection = document.getElementById('features');
+            if (featureSection) {
+                const cards = featureSection.querySelectorAll('.glass-card');
+                
+                cards.forEach((card, index) => {
+                    gsap.fromTo(card, 
+                        {
+                            y: 30,
+                            opacity: 0
+                        },
+                        {
+                            scrollTrigger: {
+                                trigger: card,
+                                start: 'top 85%',
+                                toggleActions: 'play none none reverse'
+                            },
+                            y: 0,
+                            opacity: 1,
+                            duration: 0.6,
+                            delay: index * 0.1,
+                            ease: 'power2.out'
+                        }
+                    );
+                });
+            }
+            
+            // Animate other sections
+            gsap.utils.toArray('section:not(#features)').forEach(section => {
+                const elements = section.querySelectorAll('h2, h3, p, .glass-card');
+                gsap.fromTo(elements,
+                    {
+                        y: 20,
+                        opacity: 0
+                    },
+                    {
+                        scrollTrigger: {
+                            trigger: section,
+                            start: 'top 80%',
+                            toggleActions: 'play none none reverse'
+                        },
+                        y: 0,
+                        opacity: 1,
+                        duration: 0.5,
+                        stagger: 0.1,
+                        ease: 'power2.out'
+                    }
+                );
             });
         }
-
-        // Floating animation for hero cards
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes float {
-                0%, 100% { transform: translateY(0px); }
-                50% { transform: translateY(-20px); }
-            }
-            .animate-float {
-                animation: float 6s ease-in-out infinite;
-            }
-        `;
-        document.head.appendChild(style);
     </script>
 </body>
 </html>
