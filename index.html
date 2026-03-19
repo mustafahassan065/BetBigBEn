@@ -3,13 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BetBigBen | Elite Sports Betting Data & Picks | Join The 1%</title>
-    <meta name="description" content="Stop gambling and start investing. Get premium, data-backed sports betting picks and strict bankroll management with BetBigBen MVP Access.">
+    <title>BetBigBen | Elite Sports Data & Sharp Betting Picks</title>
+    <meta name="description" content="Stop donating to Vegas. Master bankroll management, get daily data-driven sports picks, and join the top 1% of profitable sports bettors with BetBigBen.">
+    
     <script src="https://cdn.tailwindcss.com"></script>
+    
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <script>
         tailwind.config = {
@@ -17,406 +20,783 @@
                 extend: {
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
-                        display: ['Space Grotesk', 'sans-serif'],
+                        sports: ['Bebas Neue', 'sans-serif'],
                     },
                     colors: {
-                        brand: {
-                            dark: '#050A14',
-                            darker: '#02040A',
-                            card: '#0B1221',
-                            green: '#10B981',
-                            greenGlow: '#047857',
-                            accent: '#38BDF8'
+                        ben: {
+                            base: '#0B0C10',       /* Ultra Dark Background */
+                            surface: '#12141A',    /* Raised Card Background */
+                            panel: '#1A1D24',      /* Panel Elements */
+                            border: '#2D323E',     /* Subtle Borders */
+                            neon: '#00FFA3',       /* Winning Green / Main Accent */
+                            neonDark: '#00CC82',
+                            red: '#FF3366',        /* Loss / Avoid Red */
+                            gold: '#FFD700',       /* VIP Gold */
+                            text: '#A0AABF',       /* Muted Text */
+                            white: '#FFFFFF'
                         }
                     },
                     animation: {
-                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-neon': 'pulseNeon 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'marquee': 'marquee 25s linear infinite',
+                        'float-slow': 'float 6s ease-in-out infinite',
+                        'slide-up': 'slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
                     },
                     keyframes: {
+                        pulseNeon: {
+                            '0%, 100%': { opacity: 0.1, transform: 'scale(1)' },
+                            '50%': { opacity: 0.25, transform: 'scale(1.05)', boxShadow: '0 0 50px rgba(0, 255, 163, 0.4)' },
+                        },
+                        marquee: {
+                            '0%': { transform: 'translateX(0)' },
+                            '100%': { transform: 'translateX(-50%)' },
+                        },
                         float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-10px)' },
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-15px)' },
+                        },
+                        slideUp: {
+                            '0%': { opacity: 0, transform: 'translateY(30px)' },
+                            '100%': { opacity: 1, transform: 'translateY(0)' },
                         }
                     }
                 }
             }
         }
     </script>
+    
     <style>
-        body { background-color: #050A14; color: #F8FAFC; overflow-x: hidden; }
-        .glass-panel { background: rgba(11, 18, 33, 0.6); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.05); }
-        .text-gradient { background: linear-gradient(135deg, #10B981 0%, #38BDF8 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .btn-glow:hover { box-shadow: 0 0 25px rgba(16, 185, 129, 0.5); }
+        body { background-color: #0B0C10; color: #FFFFFF; overflow-x: hidden; }
         
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 10px; }
-        ::-webkit-scrollbar-track { background: #02040A; }
-        ::-webkit-scrollbar-thumb { background: #1F2937; border-radius: 5px; }
-        ::-webkit-scrollbar-thumb:hover { background: #10B981; }
+        /* Premium Glass & Layout Utilities */
+        .glass-nav { background: rgba(11, 12, 16, 0.85); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid rgba(45, 50, 62, 0.8); }
+        .glass-card { background: linear-gradient(160deg, rgba(26, 29, 36, 0.9) 0%, rgba(18, 20, 26, 0.95) 100%); backdrop-filter: blur(16px); border: 1px solid #2D323E; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); box-shadow: 0 20px 40px rgba(0,0,0,0.6); }
+        .glass-card:hover { border-color: rgba(0, 255, 163, 0.4); transform: translateY(-4px); box-shadow: 0 20px 50px rgba(0, 255, 163, 0.15); }
+        
+        /* Typography Gradients */
+        .text-gradient-neon { background: linear-gradient(135deg, #00FFA3 0%, #00CC82 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        
+        /* Custom Buttons */
+        .btn-neon { 
+            position: relative; background: linear-gradient(135deg, #00FFA3 0%, #00CC82 100%); color: #0B0C10; font-weight: 800; overflow: hidden; z-index: 1; transition: all 0.4s ease; border: none;
+        }
+        .btn-neon::before { 
+            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent); transition: all 0.6s ease; z-index: -1; 
+        }
+        .btn-neon:hover::before { left: 100%; }
+        .btn-neon:hover { box-shadow: 0 0 35px rgba(0, 255, 163, 0.5); transform: translateY(-2px); }
+
+        .btn-outline {
+            border: 1px solid rgba(0, 255, 163, 0.3); color: #FFFFFF; transition: all 0.3s ease; background: rgba(0, 255, 163, 0.05);
+        }
+        .btn-outline:hover {
+            border-color: #00FFA3; background: rgba(0, 255, 163, 0.15); box-shadow: 0 0 20px rgba(0, 255, 163, 0.2);
+        }
+        
+        /* Sports Field Grid Background */
+        .bg-sports-grid {
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+
+        /* Image Masking */
+        .img-overlay { position: relative; }
+        .img-overlay::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, #0B0C10 0%, transparent 70%); }
+
+        /* Custom Scrollbars */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0B0C10; }
+        ::-webkit-scrollbar-thumb { background: #2D323E; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #00FFA3; }
+
+        .terminal-scroll::-webkit-scrollbar { width: 4px; }
+        .terminal-scroll::-webkit-scrollbar-track { background: #12141A; }
+        .terminal-scroll::-webkit-scrollbar-thumb { background: #2D323E; border-radius: 2px; }
+
+        /* Range Slider Styling */
+        input[type=range] { -webkit-appearance: none; background: transparent; width: 100%; }
+        input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; height: 26px; width: 26px; border-radius: 50%; background: #00FFA3; cursor: pointer; margin-top: -11px; box-shadow: 0 0 15px rgba(0,255,163,0.6); border: 3px solid #0B0C10; }
+        input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 4px; cursor: pointer; background: #2D323E; border-radius: 2px; }
+
+        /* Accordion transition */
+        .accordion-content { transition: max-height 0.4s ease-in-out, opacity 0.4s ease-in-out; }
     </style>
 </head>
-<body class="antialiased selection:bg-brand-green selection:text-white">
+<body class="antialiased selection:bg-ben-neon selection:text-ben-base">
 
-    <nav x-data="{ mobileMenuOpen: false }" class="fixed w-full z-50 glass-panel border-b border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <div class="flex-shrink-0 flex items-center cursor-pointer">
-                    <span class="font-display font-bold text-3xl tracking-tighter text-white">
-                        BET<span class="text-brand-green">BIG</span>BEN
-                    </span>
+    <div class="bg-ben-neon text-black border-b border-ben-neonDark overflow-hidden relative z-50 h-10 flex items-center shadow-[0_0_15px_rgba(0,255,163,0.3)]">
+        <div class="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-ben-neon to-transparent z-10"></div>
+        <div class="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-ben-neon to-transparent z-10"></div>
+        <div class="flex whitespace-nowrap animate-marquee items-center font-sans text-xs font-bold uppercase tracking-widest">
+            <span class="mx-6 flex items-center gap-2"><span class="text-xl">✅</span> NBA: LAKERS ML CASHED (+1.5U)</span>
+            <span class="mx-6 flex items-center gap-2"><span class="text-xl">✅</span> NFL: CHIEFS -3.5 SPREAD HIT (+2.0U)</span>
+            <span class="mx-6 flex items-center gap-2"><span class="text-xl">✅</span> MLB: YANKEES O8.5 RUNS SECURED (+1.0U)</span>
+            <span class="mx-6 flex items-center gap-2"><span class="text-xl">✅</span> NHL: PANTHERS ML HIT (+1.2U)</span>
+            <span class="mx-6 flex items-center gap-2"><span class="text-xl">🔥</span> OVERALL WEEKLY PROFIT: +12.4 UNITS</span>
+            <span class="mx-6 flex items-center gap-2"><span class="text-xl">✅</span> NBA: LAKERS ML CASHED (+1.5U)</span>
+            <span class="mx-6 flex items-center gap-2"><span class="text-xl">✅</span> NFL: CHIEFS -3.5 SPREAD HIT (+2.0U)</span>
+            <span class="mx-6 flex items-center gap-2"><span class="text-xl">✅</span> MLB: YANKEES O8.5 RUNS SECURED (+1.0U)</span>
+            <span class="mx-6 flex items-center gap-2"><span class="text-xl">✅</span> NHL: PANTHERS ML HIT (+1.2U)</span>
+            <span class="mx-6 flex items-center gap-2"><span class="text-xl">🔥</span> OVERALL WEEKLY PROFIT: +12.4 UNITS</span>
+        </div>
+    </div>
+
+    <nav x-data="{ scrolled: false, mobileMenuOpen: false }" 
+         @scroll.window="scrolled = (window.pageYOffset > 20)" 
+         :class="{'glass-nav shadow-2xl': scrolled, 'bg-transparent border-transparent': !scrolled}"
+         class="fixed w-full z-40 transition-all duration-300 top-10">
+        <div class="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-24">
+                
+                <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer group">
+                    <div class="w-12 h-12 bg-ben-surface rounded-lg flex items-center justify-center border border-ben-border group-hover:border-ben-neon transition-colors shadow-lg relative overflow-hidden">
+                        <div class="absolute inset-0 bg-ben-neon/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        <svg class="w-6 h-6 text-ben-neon relative z-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-sports text-3xl tracking-widest text-white uppercase leading-none">BetBig<span class="text-ben-neon">Ben</span></span>
+                        <span class="font-sans text-[9px] text-ben-text tracking-[0.2em] uppercase mt-1 font-bold">The 1% Sports Syndicate</span>
+                    </div>
                 </div>
                 
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#system" class="text-gray-300 hover:text-white transition-colors font-medium">The System</a>
-                    <a href="#proof" class="text-gray-300 hover:text-white transition-colors font-medium">Wall of Wins</a>
-                    <a href="#faq" class="text-gray-300 hover:text-white transition-colors font-medium">FAQ</a>
-                    <a href="#pricing" class="bg-brand-green hover:bg-emerald-400 text-brand-darker font-bold px-6 py-2.5 rounded-md transition-all btn-glow transform hover:-translate-y-0.5">
-                        Get MVP Access
-                    </a>
+                <div class="hidden lg:flex items-center space-x-10">
+                    <a href="#problem" class="font-sans text-xs font-bold text-gray-400 hover:text-white transition-colors uppercase tracking-widest">The Reality</a>
+                    <a href="#videos" class="font-sans text-xs font-bold text-gray-400 hover:text-white transition-colors uppercase tracking-widest">Masterclass</a>
+                    <a href="#calculator" class="font-sans text-xs font-bold text-gray-400 hover:text-white transition-colors uppercase tracking-widest">Bankroll Math</a>
+                    <a href="#proof" class="font-sans text-xs font-bold text-gray-400 hover:text-white transition-colors uppercase tracking-widest">Wall of Wins</a>
+                    
+                    <div class="pl-8 border-l border-ben-border flex items-center gap-6">
+                        <div class="text-right hidden xl:block">
+                            <p class="font-sans text-[9px] text-ben-text uppercase tracking-widest font-bold">MVP Access</p>
+                            <p class="font-bold text-white leading-none mt-1">$25.00 <span class="text-xs text-gray-500 font-normal">/ 14 Days</span></p>
+                        </div>
+                        <a href="#pricing" class="btn-neon font-sans text-sm font-bold uppercase tracking-widest px-8 py-3.5 rounded-md shadow-lg">
+                            Get Access Now
+                        </a>
+                    </div>
                 </div>
 
-                <div class="md:hidden flex items-center">
-                    <button @click="mobileMenuOpen = !mobileMenuOpen" class="text-gray-300 hover:text-white focus:outline-none">
+                <div class="lg:hidden flex items-center">
+                    <button @click="mobileMenuOpen = !mobileMenuOpen" class="text-white focus:outline-none">
                         <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path x-show="!mobileMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                            <path x-show="mobileMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" style="display: none;"/>
+                            <path x-show="!mobileMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16" />
+                            <path x-show="mobileMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12" style="display: none;"/>
                         </svg>
                     </button>
                 </div>
             </div>
         </div>
 
-        <div x-show="mobileMenuOpen" x-collapse class="md:hidden glass-panel border-t border-gray-800">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#system" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-800">The System</a>
-                <a href="#proof" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-800">Wall of Wins</a>
-                <a href="#pricing" class="block px-3 py-2 mt-4 text-center rounded-md text-base font-bold text-brand-darker bg-brand-green">Join MVP Now</a>
+        <div x-show="mobileMenuOpen" x-collapse class="lg:hidden bg-ben-surface border-t border-ben-border shadow-2xl absolute w-full h-screen">
+            <div class="px-6 pt-8 pb-12 space-y-4">
+                <a href="#problem" @click="mobileMenuOpen = false" class="block font-sans text-sm font-bold text-gray-300 hover:text-white uppercase tracking-widest border-b border-ben-border pb-4">The Reality</a>
+                <a href="#videos" @click="mobileMenuOpen = false" class="block font-sans text-sm font-bold text-gray-300 hover:text-white uppercase tracking-widest border-b border-ben-border pb-4">Video Masterclass</a>
+                <a href="#calculator" @click="mobileMenuOpen = false" class="block font-sans text-sm font-bold text-gray-300 hover:text-white uppercase tracking-widest border-b border-ben-border pb-4">Bankroll Calculator</a>
+                <a href="#proof" @click="mobileMenuOpen = false" class="block font-sans text-sm font-bold text-gray-300 hover:text-white uppercase tracking-widest border-b border-ben-border pb-4">Member Wins</a>
+                <a href="#pricing" @click="mobileMenuOpen = false" class="block mt-10 text-center btn-neon font-sans font-bold text-sm uppercase tracking-widest py-4 rounded-md text-black">
+                    Join MVP ($25)
+                </a>
             </div>
         </div>
     </nav>
 
-    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden border-b border-gray-900">
-        <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?q=80&w=2000" alt="Stadium" class="w-full h-full object-cover opacity-10 mix-blend-luminosity">
-            <div class="absolute inset-0 bg-gradient-to-b from-brand-dark/50 via-brand-dark to-brand-dark"></div>
-            <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-brand-green/20 rounded-full blur-[100px] animate-pulse-slow"></div>
-            <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-brand-accent/10 rounded-full blur-[100px] animate-pulse-slow delay-1000"></div>
+    <section class="relative pt-48 pb-24 lg:pt-60 lg:pb-36 overflow-hidden bg-sports-grid border-b border-ben-border">
+        <div class="absolute inset-0 z-0 pointer-events-none">
+            <div class="absolute top-0 right-0 w-full h-full bg-[url('https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?q=80&w=2000')] bg-cover bg-center opacity-10 mix-blend-screen"></div>
+            <div class="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-ben-neon/15 rounded-full blur-[150px] animate-pulse-neon"></div>
+            <div class="absolute bottom-0 right-0 w-[800px] h-[500px] bg-ben-neon/5 rounded-full blur-[120px]" style="animation-delay: 2s;"></div>
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-ben-base/80 to-ben-base"></div>
         </div>
         
-        <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 font-semibold mb-8 text-sm backdrop-blur-sm animate-float">
-                <span class="relative flex h-3 w-3">
-                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                  <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
-                </span>
-                Verified Top 1% Sports Betting Community on Whop
-            </div>
+        <div class="relative z-10 max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-12 gap-16 items-center">
             
-            <h1 class="text-5xl md:text-7xl lg:text-8xl font-display font-bold mb-6 leading-[1.1] tracking-tight">
-                Stop Gambling.<br>
-                Start <span class="text-gradient">Investing</span>.
-            </h1>
-            
-            <p class="mt-6 text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto font-medium leading-relaxed">
-                We don't rely on luck. Get exclusive access to algorithmic data, rigorous bankroll management, and the exact daily picks our VIPs use to consistently beat the sportsbooks.
-            </p>
-            
-            <div class="mt-12 flex flex-col sm:flex-row justify-center gap-5">
-                <a href="#pricing" class="inline-flex items-center justify-center px-8 py-4 text-lg font-bold rounded-lg text-brand-darker bg-brand-green hover:bg-emerald-400 transition-all btn-glow">
-                    Get MVP Access ($25/14 Days)
-                    <svg class="ml-2 -mr-1 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
-                </a>
-                <a href="https://whop.com/betbigben/betbigbenfree?a=digitalartlab" target="_blank" class="inline-flex items-center justify-center px-8 py-4 text-lg font-bold rounded-lg text-white bg-transparent border border-gray-600 hover:border-white hover:bg-gray-800 transition-all">
-                    Join Free Chat & Picks
-                </a>
-            </div>
-            
-            <div class="mt-10 flex items-center justify-center gap-6 text-sm text-gray-500">
-                <div class="flex items-center gap-2">
-                    <svg class="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    Cancel Anytime
-                </div>
-                <div class="flex items-center gap-2">
-                    <svg class="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
-                    Secure Checkout via Whop
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <div class="bg-brand-card border-b border-gray-900 py-6">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center divide-x divide-gray-800">
-                <div class="px-4">
-                    <div class="text-3xl font-display font-bold text-white mb-1">9,000+</div>
-                    <div class="text-sm text-gray-500 uppercase tracking-wide font-semibold">Active Members</div>
-                </div>
-                <div class="px-4">
-                    <div class="text-3xl font-display font-bold text-brand-green mb-1">+450U</div>
-                    <div class="text-sm text-gray-500 uppercase tracking-wide font-semibold">Verified Profit (YTD)</div>
-                </div>
-                <div class="px-4">
-                    <div class="text-3xl font-display font-bold text-white mb-1">5.0/5</div>
-                    <div class="text-sm text-gray-500 uppercase tracking-wide font-semibold">Whop Rating</div>
-                </div>
-                <div class="px-4">
-                    <div class="text-3xl font-display font-bold text-brand-accent mb-1">24/7</div>
-                    <div class="text-sm text-gray-500 uppercase tracking-wide font-semibold">Expert Support</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <section class="py-24 bg-brand-darker relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <h2 class="text-sm font-bold text-red-500 tracking-widest uppercase mb-3">The Hard Truth</h2>
-                <h3 class="text-4xl md:text-5xl font-display font-bold mb-6">Why 95% of Sports Bettors <span class="text-red-500">Lose Money</span></h3>
-                <p class="text-gray-400 text-lg">If you are doing any of the following, you are literally handing your hard-earned paycheck to the casinos and sportsbooks.</p>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-brand-card p-8 rounded-2xl border border-red-900/30 hover:border-red-500/50 transition-colors">
-                    <div class="w-14 h-14 bg-red-500/10 rounded-xl flex items-center justify-center mb-6">
-                        <svg class="w-8 h-8 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    </div>
-                    <h4 class="text-xl font-bold text-white mb-3">Chasing Losses</h4>
-                    <p class="text-gray-400 leading-relaxed">You lose a bet at 1 PM, so you double down on the 4 PM game out of anger to "win it back." This emotional spiral is exactly how bankrolls are destroyed.</p>
+            <div class="lg:col-span-6 text-center lg:text-left animate-slide-up">
+                <div class="inline-flex items-center justify-center lg:justify-start gap-3 px-5 py-2.5 rounded-full border border-ben-neon/30 bg-ben-neon/10 font-sans text-xs font-bold text-ben-neon mb-8 tracking-widest uppercase backdrop-blur-md shadow-[0_0_20px_rgba(0,255,163,0.15)]">
+                    <span class="w-2 h-2 rounded-full bg-ben-neon animate-pulse shadow-[0_0_8px_#00FFA3]"></span>
+                    Voted #1 Premium Betting Community
                 </div>
                 
-                <div class="bg-brand-card p-8 rounded-2xl border border-red-900/30 hover:border-red-500/50 transition-colors">
-                    <div class="w-14 h-14 bg-red-500/10 rounded-xl flex items-center justify-center mb-6">
-                        <svg class="w-8 h-8 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
-                    </div>
-                    <h4 class="text-xl font-bold text-white mb-3">Lotto Parlays</h4>
-                    <p class="text-gray-400 leading-relaxed">Putting $10 on a 12-leg parlay to win $10,000 sounds fun, but the math proves it's a donation. Vegas builds shiny new hotels specifically from parlay bettors.</p>
+                <h1 class="text-6xl md:text-7xl lg:text-[6.5rem] font-sports mb-6 leading-[0.95] tracking-wide text-white drop-shadow-2xl">
+                    Stop Gambling. <br>
+                    Start <span class="text-gradient-neon">Investing.</span>
+                </h1>
+                
+                <p class="mt-6 text-lg md:text-xl text-gray-400 font-medium leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                    95% of sports bettors lose money long-term because they bet on emotion. We treat sports betting like a hedge fund. Get exclusive access to mathematical +EV picks, strict unit sizing, and the exact plays our VIPs use to consistently beat the sportsbooks.
+                </p>
+                
+                <div class="mt-12 flex flex-col sm:flex-row justify-center lg:justify-start gap-5">
+                    <a href="#pricing" class="inline-flex items-center justify-center px-12 py-5 text-sm font-sans font-bold uppercase tracking-widest rounded-md btn-neon shadow-2xl">
+                        Get MVP Access ($25/14d)
+                    </a>
+                    <a href="https://whop.com/betbigben/betbigbenfree?a=digitalartlab" target="_blank" class="inline-flex items-center justify-center px-12 py-5 text-sm font-sans font-bold uppercase tracking-widest rounded-md text-white btn-outline">
+                        Join Free Plays Group
+                    </a>
                 </div>
-
-                <div class="bg-brand-card p-8 rounded-2xl border border-red-900/30 hover:border-red-500/50 transition-colors">
-                    <div class="w-14 h-14 bg-red-500/10 rounded-xl flex items-center justify-center mb-6">
-                        <svg class="w-8 h-8 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                
+                <div class="mt-14 pt-8 border-t border-ben-border flex flex-wrap justify-center lg:justify-start gap-8 font-sans text-xs text-ben-text font-bold uppercase tracking-widest">
+                    <div class="flex items-center gap-2">
+                        <svg class="w-5 h-5 text-ben-neon" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        Daily Data-Backed Picks
                     </div>
-                    <h4 class="text-xl font-bold text-white mb-3">No Unit Sizing</h4>
-                    <p class="text-gray-400 leading-relaxed">Betting random amounts based on "how confident" you feel. Without strict mathematical unit allocation, variance will inevitably wipe you out.</p>
+                    <div class="flex items-center gap-2">
+                        <svg class="w-5 h-5 text-ben-neon" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                        Secure via Whop
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <section id="system" class="py-24 relative overflow-hidden">
-        <div class="absolute inset-0 bg-brand-dark z-0"></div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            
-            <div class="flex flex-col lg:flex-row items-center gap-16 mb-24">
-                <div class="lg:w-1/2">
-                    <h2 class="text-sm font-bold text-brand-green tracking-widest uppercase mb-3">The BetBigBen Edge</h2>
-                    <h3 class="text-4xl font-display font-bold mb-6 leading-tight">We Exploit <br><span class="text-gradient">Market Inefficiencies</span></h3>
-                    <p class="text-gray-400 text-lg mb-8 leading-relaxed">
-                        At BetBigBen, we don't guess. Our team of data analysts and seasoned handicappers run thousands of simulations on daily slates. We look for discrepancies between our algorithmic projections and the sportsbook lines. When we find a mathematical edge (+EV), we strike.
-                    </p>
-                    <ul class="space-y-4">
-                        <li class="flex items-start">
-                            <div class="flex-shrink-0 w-6 h-6 rounded-full bg-brand-green/20 flex items-center justify-center mt-1">
-                                <svg class="w-4 h-4 text-brand-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
-                            </div>
-                            <div class="ml-4">
-                                <h4 class="text-white font-bold text-lg">Strict Bankroll Management</h4>
-                                <p class="text-gray-500 mt-1">We tell you exactly how many "Units" (1-5%) to risk per play to survive variance and compound wealth.</p>
-                            </div>
-                        </li>
-                        <li class="flex items-start">
-                            <div class="flex-shrink-0 w-6 h-6 rounded-full bg-brand-green/20 flex items-center justify-center mt-1">
-                                <svg class="w-4 h-4 text-brand-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
-                            </div>
-                            <div class="ml-4">
-                                <h4 class="text-white font-bold text-lg">Straight Bets Over Parlays</h4>
-                                <p class="text-gray-500 mt-1">We focus on high-probability straight bets and calculated player props. Slow and steady wins the race.</p>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="lg:w-1/2 relative">
-                    <div class="glass-panel p-2 rounded-2xl shadow-2xl border-gray-800 transform rotate-2 hover:rotate-0 transition-transform duration-500">
-                        <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=1000" alt="Trading Dashboard" class="rounded-xl opacity-80 mix-blend-screen grayscale contrast-125 border border-gray-800">
-                        <div class="absolute -bottom-6 -left-6 bg-brand-card border border-emerald-500/30 p-4 rounded-xl shadow-xl flex items-center gap-4 animate-float">
-                            <div class="bg-emerald-500/20 p-3 rounded-full">
-                                <svg class="w-8 h-8 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+            <div class="lg:col-span-6 relative hidden lg:block animate-float-slow" style="animation-delay: 0.2s;">
+                <div class="absolute inset-0 bg-gradient-to-tr from-ben-neon/20 to-transparent rounded-2xl transform rotate-3 blur-3xl"></div>
+                
+                <div class="glass-card rounded-2xl p-2 relative z-10 w-full h-[600px] flex flex-col shadow-[0_30px_60px_rgba(0,0,0,0.8)] border border-ben-border">
+                    
+                    <div class="flex justify-between items-center bg-ben-panel border-b border-ben-border px-4 py-3 rounded-t-xl">
+                        <div class="flex gap-2">
+                            <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+                            <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+                            <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+                        </div>
+                        <div class="flex items-center gap-2 font-mono text-[10px] text-gray-400 uppercase tracking-widest font-bold">
+                            <svg class="w-4 h-4 text-ben-neon" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
+                            BetBigBen Discord Server
+                        </div>
+                        <span class="bg-ben-neon/10 border border-ben-neon/30 text-ben-neon text-[9px] font-bold px-2 py-1 rounded-sm uppercase tracking-widest flex items-center gap-1">
+                            <span class="w-1.5 h-1.5 bg-ben-neon rounded-full animate-pulse"></span> Online
+                        </span>
+                    </div>
+                    
+                    <div class="flex flex-1 overflow-hidden bg-[#1E2129] rounded-b-xl font-sans">
+                        
+                        <div class="w-48 border-r border-[#2D323E] bg-[#17191F] p-3 hidden sm:flex flex-col gap-4">
+                            <div>
+                                <p class="text-[9px] font-bold text-gray-500 uppercase tracking-widest mb-2 px-2">MVP Access</p>
+                                <div class="space-y-1">
+                                    <div class="bg-[#2D323E] px-2 py-1.5 rounded text-xs text-white font-bold cursor-pointer border-l-2 border-ben-neon flex items-center gap-2"><span>🎯</span> daily-picks</div>
+                                    <div class="px-2 py-1.5 rounded text-xs text-gray-400 hover:bg-[#2D323E] hover:text-white cursor-pointer transition-colors flex items-center gap-2"><span>📊</span> unit-tracking</div>
+                                    <div class="px-2 py-1.5 rounded text-xs text-gray-400 hover:bg-[#2D323E] hover:text-white cursor-pointer transition-colors flex items-center gap-2"><span>🏀</span> nba-analysis</div>
+                                    <div class="px-2 py-1.5 rounded text-xs text-gray-400 hover:bg-[#2D323E] hover:text-white cursor-pointer transition-colors flex items-center gap-2"><span>🏈</span> nfl-props</div>
+                                </div>
                             </div>
                             <div>
-                                <p class="text-xs text-gray-400 font-bold uppercase tracking-wider">NBA Slate</p>
-                                <p class="text-xl font-bold text-white">+8.5 Units Won</p>
+                                <p class="text-[9px] font-bold text-gray-500 uppercase tracking-widest mb-2 px-2">Community</p>
+                                <div class="space-y-1">
+                                    <div class="px-2 py-1.5 rounded text-xs text-gray-400 hover:bg-[#2D323E] hover:text-white cursor-pointer transition-colors flex items-center gap-2"><span>💬</span> vip-chat</div>
+                                    <div class="px-2 py-1.5 rounded text-xs text-gray-400 hover:bg-[#2D323E] hover:text-white cursor-pointer transition-colors flex items-center gap-2"><span>💰</span> slip-sharing</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex-1 p-4 relative overflow-hidden flex flex-col">
+                            <div class="border-b border-[#2D323E] pb-3 mb-4 flex justify-between items-center">
+                                <h3 class="text-white font-bold flex items-center gap-2 text-sm"><span class="text-gray-500">#</span> daily-picks</h3>
+                                <span class="text-[10px] text-gray-400 border border-[#2D323E] px-2 py-1 rounded flex items-center gap-1"><span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span> 1,240 viewing</span>
+                            </div>
+                            
+                            <div class="flex-1 overflow-y-auto terminal-scroll space-y-6 pb-20">
+                                
+                                <div class="flex gap-3">
+                                    <div class="w-10 h-10 rounded-full bg-ben-neon flex-shrink-0 flex items-center justify-center border-2 border-ben-neon overflow-hidden">
+                                        <img src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?q=80&w=100" class="w-full h-full object-cover mix-blend-multiply" alt="Ben">
+                                    </div>
+                                    <div class="flex-1">
+                                        <div class="flex items-baseline gap-2 mb-1">
+                                            <span class="font-bold text-ben-neon text-sm hover:underline cursor-pointer">BigBen</span>
+                                            <span class="text-[9px] bg-ben-neon/20 text-ben-neon px-1.5 py-0.5 rounded uppercase font-bold tracking-widest">Admin</span>
+                                            <span class="text-[10px] text-gray-500">Today at 4:30 PM</span>
+                                        </div>
+                                        
+                                        <div class="bg-[#262A33] border-l-4 border-ben-neon rounded-md p-4 mt-2 shadow-lg max-w-sm">
+                                            <h5 class="font-sports text-white text-xl tracking-wider mb-2 flex items-center gap-2">
+                                                <span class="animate-pulse">🔥</span> OFFICIAL MVP PLAY
+                                            </h5>
+                                            <div class="space-y-1 text-sm text-gray-300">
+                                                <p><strong class="text-white">Sport:</strong> NBA</p>
+                                                <p><strong class="text-white">Matchup:</strong> DEN Nuggets vs LAL Lakers</p>
+                                                <p><strong class="text-white">Play:</strong> Nikola Jokic Over 11.5 Rebounds (-115)</p>
+                                                <p><strong class="text-white">Risk:</strong> <span class="bg-ben-neon text-black px-2 py-0.5 rounded text-xs font-bold">3.0 UNITS</span></p>
+                                            </div>
+                                            <div class="mt-4 border-t border-[#373D4A] pt-3 text-xs text-gray-400 leading-relaxed">
+                                                <strong class="text-white">Analysis:</strong> AD is out for the Lakers tonight. In the last 4 games without AD, opposing centers average 14.2 rebounds. The algorithmic model projects Jokic at 13.8 rebounds here. Massive +EV edge.
+                                            </div>
+                                            <div class="mt-3 flex gap-2">
+                                                <span class="bg-[#373D4A] px-2 py-1 rounded text-xs text-white border border-[#484F5E]">🔥 342</span>
+                                                <span class="bg-[#373D4A] px-2 py-1 rounded text-xs text-white border border-[#484F5E]">💰 185</span>
+                                                <span class="bg-[#373D4A] px-2 py-1 rounded text-xs text-white border border-[#484F5E]">🔒 210</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex gap-3">
+                                    <div class="w-10 h-10 rounded-full bg-blue-500/20 flex-shrink-0 flex items-center justify-center border border-blue-500/50">
+                                        <span class="text-xs font-bold text-blue-300">JT</span>
+                                    </div>
+                                    <div class="flex-1">
+                                        <div class="flex items-baseline gap-2 mb-1">
+                                            <span class="font-bold text-white text-sm">Jake T.</span>
+                                            <span class="text-[10px] text-gray-500">Today at 4:32 PM</span>
+                                        </div>
+                                        <p class="text-sm text-gray-300 mt-1">Locked in! The analysis makes perfect sense. Let's cash this tonight 💸</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                            
+                            <div class="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-[#1E2129] to-transparent pointer-events-none"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <section id="videos" class="py-32 bg-ben-surface border-b border-ben-border relative">
+        <div class="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-20">
+                <h2 class="font-sans text-xs font-bold text-ben-neon tracking-[0.3em] uppercase mb-4 border border-ben-neon/30 inline-block px-4 py-1.5 rounded-sm bg-ben-neon/10">Video Masterclass</h2>
+                <h3 class="text-4xl md:text-5xl lg:text-6xl font-sports mb-6 text-white tracking-wide">Inside The <span class="text-gradient-neon">Sharps' Mind.</span></h3>
+                <p class="text-lg text-gray-400 max-w-3xl mx-auto leading-relaxed">Don't take our word for it. Watch exactly how BetBigBen approaches the board, manages bankrolls, and finds the mathematical edges that Vegas doesn't want you to see.</p>
+            </div>
+
+            <div class="grid lg:grid-cols-12 gap-8">
+                
+                <div class="lg:col-span-8">
+                    <div class="bg-ben-base border border-ben-border rounded-xl p-2 shadow-2xl h-full flex flex-col group hover:border-ben-border/80 transition-colors">
+                        <div class="relative w-full aspect-video rounded-lg overflow-hidden bg-black shadow-inner">
+                            <iframe 
+                                class="absolute top-0 left-0 w-full h-full border-0 group-hover:scale-[1.01] transition-transform duration-700" 
+                                src="https://www.youtube-nocookie.com/embed/YOUR_VIDEO_ID_1?rel=0&modestbranding=1" 
+                                title="BetBigBen - System Overview" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="p-6 md:p-8 mt-auto">
+                            <div class="flex items-center gap-3 mb-3">
+                                <span class="bg-ben-neon text-black font-bold font-sans text-[10px] px-3 py-1 rounded-sm uppercase tracking-widest">Masterclass</span>
+                                <span class="text-gray-500 text-xs font-mono">Duration: 12:45</span>
+                            </div>
+                            <h4 class="text-3xl font-sports text-white mb-3 tracking-wide">The Architecture of +EV Betting</h4>
+                            <p class="text-sm text-gray-400 leading-relaxed">A complete breakdown of Expected Value (+EV) and why fading the public is the only sustainable way to build a sports betting portfolio.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-4 flex flex-col gap-8">
+                    
+                    <div class="bg-ben-base border border-ben-border rounded-xl p-2 shadow-lg group hover:border-ben-border/80 transition-colors flex-1 flex flex-col">
+                        <div class="relative w-full aspect-video rounded-lg overflow-hidden bg-black">
+                            <iframe 
+                                class="absolute top-0 left-0 w-full h-full border-0" 
+                                src="https://www.youtube-nocookie.com/embed/YOUR_VIDEO_ID_2?rel=0&modestbranding=1" 
+                                title="BetBigBen - Bankroll Management" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="p-5 flex-1">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="bg-gray-800 text-gray-300 font-bold font-sans text-[9px] px-2 py-0.5 rounded-sm uppercase tracking-widest">Strategy</span>
+                            </div>
+                            <h4 class="text-xl font-sports text-white mb-2 tracking-wide">Unit Sizing Rules</h4>
+                            <p class="text-xs text-gray-400">Why you should never risk more than 1-5% of your total bankroll on a single slate.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-ben-base border border-ben-border rounded-xl p-2 shadow-lg group hover:border-ben-border/80 transition-colors flex-1 flex flex-col">
+                        <div class="relative w-full aspect-video rounded-lg overflow-hidden bg-black">
+                            <iframe 
+                                class="absolute top-0 left-0 w-full h-full border-0" 
+                                src="https://www.youtube-nocookie.com/embed/YOUR_VIDEO_ID_3?rel=0&modestbranding=1" 
+                                title="BetBigBen - Live Picks Analysis" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="p-5 flex-1">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="bg-gray-800 text-gray-300 font-bold font-sans text-[9px] px-2 py-0.5 rounded-sm uppercase tracking-widest">Live Analysis</span>
+                            </div>
+                            <h4 class="text-xl font-sports text-white mb-2 tracking-wide">NBA Slate Breakdown</h4>
+                            <p class="text-xs text-gray-400">Watch Ben analyze the lines and find discrepancies before the books adjust.</p>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="problem" class="py-32 bg-ben-base relative border-b border-ben-border overflow-hidden">
+        <div class="absolute inset-0 bg-sports-grid opacity-30 pointer-events-none"></div>
+        <div class="absolute top-0 right-0 w-full h-[600px] bg-[url('https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?q=80&w=2000')] bg-cover opacity-[0.03] mix-blend-luminosity"></div>
+        
+        <div class="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-4xl mx-auto mb-24">
+                <h2 class="font-sans text-xs font-bold text-ben-neon tracking-[0.3em] uppercase mb-4">The Brutal Reality</h2>
+                <h3 class="text-4xl md:text-5xl lg:text-6xl font-sports mb-6 text-white tracking-wide">Why 95% of Bettors <span class="text-ben-red line-through decoration-ben-red/50">Lose Everything.</span></h3>
+                <p class="text-lg text-gray-400 leading-relaxed font-medium">Vegas wasn't built on winners. It was built on emotional bettors who treat sports like a lottery ticket. Let's look at the mathematical reality of why you are losing money, and how the top 1% operate.</p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-0 border border-ben-border rounded-2xl overflow-hidden shadow-2xl">
+                
+                <div class="bg-[#12141A] p-10 md:p-16 border-b lg:border-b-0 lg:border-r border-ben-border relative opacity-90 hover:opacity-100 transition-opacity">
+                    <div class="w-14 h-14 bg-red-500/10 text-ben-red rounded-xl flex items-center justify-center mb-8 border border-red-500/20">
+                        <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    </div>
+                    <h4 class="font-sports text-4xl text-white mb-4 tracking-wide">The Amateur Way</h4>
+                    <p class="text-sm text-gray-500 mb-10 leading-relaxed">Betting based on gut feelings and chasing massive payouts.</p>
+                    
+                    <ul class="space-y-6 text-sm text-gray-400">
+                        <li class="flex items-start gap-4">
+                            <span class="text-ben-red font-bold mt-0.5 text-lg">✗</span> 
+                            <div>
+                                <strong class="text-white block mb-1">The Parlay Trap</strong>
+                                Throwing $10 on a 10-leg parlay hoping to win $10,000. The mathematical probability of this hitting is near zero. Books love parlay bettors.
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <span class="text-ben-red font-bold mt-0.5 text-lg">✗</span> 
+                            <div>
+                                <strong class="text-white block mb-1">Chasing Losses</strong>
+                                You lose a bet at 1 PM, so you double your bet size on the 4 PM game out of anger to "win it back." This destroys bankrolls instantly.
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <span class="text-ben-red font-bold mt-0.5 text-lg">✗</span> 
+                            <div>
+                                <strong class="text-white block mb-1">No Unit Sizing</strong>
+                                Betting random amounts based on "how confident" you feel. Without strict mathematical allocation, variance will inevitably wipe you out.
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-ben-panel p-10 md:p-16 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-ben-neon/5 rounded-full blur-[80px]"></div>
+                    <div class="w-14 h-14 bg-ben-neon/10 text-ben-neon rounded-xl flex items-center justify-center mb-8 border border-ben-neon/20">
+                        <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+                    </div>
+                    <h4 class="font-sports text-4xl text-white mb-4 tracking-wide">The BetBigBen Way</h4>
+                    <p class="text-sm text-ben-neon mb-10 leading-relaxed font-bold uppercase tracking-widest">Treating sports betting like a Hedge Fund.</p>
+                    
+                    <ul class="space-y-6 text-sm text-gray-300 relative z-10">
+                        <li class="flex items-start gap-4">
+                            <span class="text-ben-neon font-black mt-0.5 text-lg">✓</span> 
+                            <div>
+                                <strong class="text-white block mb-1">Straight Bets & Calculated Props</strong>
+                                We focus on high-probability straight bets and mathematically advantageous player props. Slow and steady compounding wins the race.
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <span class="text-ben-neon font-black mt-0.5 text-lg">✓</span> 
+                            <div>
+                                <strong class="text-white block mb-1">Strict Bankroll Management</strong>
+                                We dictate exactly how many "Units" (1-5%) to risk per play. This ensures you survive the inevitable variance of sports and stay profitable long-term.
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <span class="text-ben-neon font-black mt-0.5 text-lg">✓</span> 
+                            <div>
+                                <strong class="text-white block mb-1">+EV (Expected Value) Focus</strong>
+                                We don't guess. We analyze data models, injury reports, and line movements to find discrepancies between our projections and the sportsbook lines.
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="calculator" class="py-32 bg-ben-surface border-b border-ben-border relative overflow-hidden" x-data="{ 
+        bankroll: 1000, 
+        unitSizePercent: 2, 
+        unitsWonPerMonth: 15,
+        get unitValue() { return this.bankroll * (this.unitSizePercent / 100); },
+        get monthlyProfit() { return this.unitValue * this.unitsWonPerMonth; },
+        get roi() { return ((this.monthlyProfit / this.bankroll) * 100).toFixed(1); }
+    }">
+        <div class="absolute inset-0 bg-sports-grid opacity-20 pointer-events-none"></div>
+        <div class="absolute top-1/2 left-0 transform -translate-y-1/2 w-[800px] h-[800px] bg-ben-neon/5 rounded-full blur-[150px] pointer-events-none"></div>
+        
+        <div class="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-12 gap-16 items-center">
+                
+                <div class="lg:col-span-5">
+                    <h2 class="font-sans text-xs font-bold text-ben-neon tracking-[0.3em] uppercase mb-4">Run The Numbers</h2>
+                    <h3 class="text-5xl md:text-6xl font-sports mb-8 text-white tracking-wide">The Math of <span class="text-gradient-neon">Winning.</span></h3>
+                    <p class="text-lg text-gray-400 mb-10 leading-relaxed font-medium">You don't need to win massive parlays to make serious money. See how a disciplined approach to "Unit Sizing" compounds your bankroll predictably over time.</p>
+                    
+                    <div class="space-y-10 bg-ben-base border border-ben-border p-8 md:p-10 rounded-2xl shadow-2xl">
+                        <div>
+                            <div class="flex justify-between mb-4">
+                                <label class="text-xs font-bold text-white uppercase tracking-widest">Total Bankroll</label>
+                                <span class="text-white font-bold font-sans text-lg" x-text="'$' + bankroll.toLocaleString()"></span>
+                            </div>
+                            <input type="range" x-model="bankroll" min="100" max="10000" step="100" class="w-full">
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-4">
+                                <label class="text-xs font-bold text-white uppercase tracking-widest">Unit Size (%)</label>
+                                <span class="text-ben-neon font-bold font-sans text-lg" x-text="unitSizePercent + '% ($' + unitValue.toFixed(0) + ')'"></span>
+                            </div>
+                            <input type="range" x-model="unitSizePercent" min="1" max="5" step="0.5" class="w-full">
+                            <p class="text-xs text-gray-500 mt-3 font-medium">Sharp bettors never risk more than 1-5% of their total bankroll per play.</p>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between mb-4">
+                                <label class="text-xs font-bold text-white uppercase tracking-widest">Units Won / Month</label>
+                                <span class="text-white font-bold font-sans text-lg" x-text="'+' + unitsWonPerMonth + ' U'"></span>
+                            </div>
+                            <input type="range" x-model="unitsWonPerMonth" min="5" max="40" step="1" class="w-full">
+                            <p class="text-xs text-gray-500 mt-3 font-medium">A conservative, realistic target for our VIP members.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7 bg-[#12141A] border-2 border-ben-neon/30 rounded-[2rem] p-10 md:p-16 flex flex-col justify-center items-center text-center relative overflow-hidden h-full min-h-[500px] shadow-[0_0_80px_rgba(0,255,163,0.1)]">
+                    <div class="absolute inset-0 bg-gradient-to-t from-ben-neon/10 via-transparent to-transparent pointer-events-none"></div>
+                    
+                    <div class="relative z-10 w-full">
+                        <p class="text-sm font-bold text-gray-400 uppercase tracking-widest mb-6">Projected Monthly Profit</p>
+                        <div class="text-7xl md:text-8xl lg:text-[7rem] font-sports text-white mb-8 drop-shadow-2xl tracking-wide" x-text="'+$' + monthlyProfit.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0})"></div>
+                        
+                        <div class="w-full h-px bg-ben-border my-10"></div>
+                        
+                        <div class="grid grid-cols-2 gap-6 text-left mb-10">
+                            <div class="bg-ben-base p-6 rounded-xl border border-ben-border shadow-inner">
+                                <p class="text-xs text-gray-500 uppercase tracking-widest mb-2 font-bold">Monthly ROI</p>
+                                <p class="text-3xl font-sports tracking-wide text-ben-neon" x-text="roi + '%'"></p>
+                            </div>
+                            <div class="bg-ben-base p-6 rounded-xl border border-ben-border shadow-inner">
+                                <p class="text-xs text-gray-500 uppercase tracking-widest mb-2 font-bold">Cost of Access</p>
+                                <p class="text-3xl font-sports tracking-wide text-white">$25.00</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-ben-neon/10 border border-ben-neon/20 p-5 rounded-xl text-left flex items-start gap-4">
+                            <svg class="w-6 h-6 text-ben-neon flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            <p class="text-sm text-gray-300 font-medium leading-relaxed">Notice how quickly the <strong class="text-white">$25 subscription cost</strong> is covered by sticking to strict mathematical unit sizing, rather than emotional gambling.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="py-32 bg-ben-base border-b border-ben-border relative">
+        <div class="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-24">
+                <h2 class="font-sans text-xs font-bold text-ben-neon tracking-[0.3em] uppercase mb-4">The MVP Arsenal</h2>
+                <h3 class="text-5xl md:text-6xl font-sports text-white mb-6 tracking-wide">Everything You <span class="text-gradient-neon">Need.</span></h3>
+                <p class="text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">No upsells. No VIP-within-VIP. One membership unlocks the entire Discord server and all expert handicappers.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-ben-panel border border-ben-border p-10 rounded-2xl hover:border-ben-neon transition-all duration-500 group shadow-lg">
+                    <div class="w-16 h-16 bg-ben-base rounded-xl flex items-center justify-center border border-ben-border mb-8 group-hover:scale-110 transition-transform duration-500 shadow-inner">
+                        <svg class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                    </div>
+                    <h4 class="text-2xl font-sports text-white mb-4 tracking-wide">Daily Expert Picks</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">Rio and multiple specialized handicappers post plays every single day with detailed analysis, unit recommendations, and the exact reasoning behind each bet. No guesswork.</p>
+                </div>
+
+                <div class="bg-ben-panel border border-ben-border p-10 rounded-2xl hover:border-ben-neon transition-all duration-500 group shadow-lg transform md:-translate-y-4">
+                    <div class="w-16 h-16 bg-ben-base rounded-xl flex items-center justify-center border border-ben-border mb-8 group-hover:scale-110 transition-transform duration-500 shadow-inner">
+                        <svg class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                    </div>
+                    <h4 class="text-2xl font-sports text-white mb-4 tracking-wide">Full Bet Tracking</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">Every member tracks every bet they place. We post daily and weekly unit recaps so you always know exactly who is running hot and the true ROI of the group. Full transparency.</p>
+                </div>
+
+                <div class="bg-ben-panel border border-ben-border p-10 rounded-2xl hover:border-ben-neon transition-all duration-500 group shadow-lg">
+                    <div class="w-16 h-16 bg-ben-base rounded-xl flex items-center justify-center border border-ben-border mb-8 group-hover:scale-110 transition-transform duration-500 shadow-inner">
+                        <svg class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    </div>
+                    <h4 class="text-2xl font-sports text-white mb-4 tracking-wide">All Major Sports</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">We don't just guess on random sports. We have dedicated experts for NBA player props, NFL spreads, MLB run lines, NHL, and even deep UFC/MMA coverage.</p>
+                </div>
+
+                <div class="bg-ben-panel border border-ben-border p-10 rounded-2xl hover:border-ben-neon transition-all duration-500 group shadow-lg">
+                    <div class="w-16 h-16 bg-ben-base rounded-xl flex items-center justify-center border border-ben-border mb-8 group-hover:scale-110 transition-transform duration-500 shadow-inner">
+                        <svg class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"/></svg>
+                    </div>
+                    <h4 class="text-2xl font-sports text-white mb-4 tracking-wide">Elite Discord Network</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">Thousands of active members discussing every slate, sharing their slips, and celebrating wins together. The most engaged and toxic-free betting community on Whop.</p>
+                </div>
+
+                <div class="bg-ben-panel border border-ben-border p-10 rounded-2xl hover:border-ben-neon transition-all duration-500 group shadow-lg transform md:-translate-y-4">
+                    <div class="w-16 h-16 bg-ben-base rounded-xl flex items-center justify-center border border-ben-border mb-8 group-hover:scale-110 transition-transform duration-500 shadow-inner">
+                        <svg class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                    </div>
+                    <h4 class="text-2xl font-sports text-white mb-4 tracking-wide">Strategy Education</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">Ben doesn't just hand you fish; he teaches you how to fish. Extensive guides on bankroll management, identifying value, line shopping, and emotional discipline.</p>
+                </div>
+
+                <div class="bg-ben-panel border border-ben-border p-10 rounded-2xl hover:border-ben-neon transition-all duration-500 group shadow-lg">
+                    <div class="w-16 h-16 bg-ben-base rounded-xl flex items-center justify-center border border-ben-border mb-8 group-hover:scale-110 transition-transform duration-500 shadow-inner">
+                        <svg class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/></svg>
+                    </div>
+                    <h4 class="text-2xl font-sports text-white mb-4 tracking-wide">Contests & Giveaways</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">We give back to the community. Regular member giveaways — including our famous $1,000 "Sweat Free Sunday" contests — adding massive extra value to your subscription.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="proof" class="py-32 bg-ben-surface border-b border-ben-border relative">
+        <div class="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-24">
+                <h2 class="text-5xl md:text-6xl lg:text-7xl font-sports text-white mb-6 tracking-wide">The Wall of <span class="text-ben-neon">Wins.</span></h2>
+                <p class="text-xl text-gray-400 max-w-2xl mx-auto">Don't take our word for it. Read the verified receipts from our Discord members.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <div class="bg-ben-panel border border-ben-border rounded-2xl overflow-hidden shadow-2xl hover:-translate-y-2 transition-transform duration-500 group">
+                    <div class="h-56 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1571754472834-677ab0a62ba7?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fHNvY2NlciUyMHN0YWRpdW18ZW58MHx8MHx8fDA%3D" alt="Stadium" class="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+                        <div class="absolute bottom-3 right-3 bg-ben-neon text-black font-bold font-sans text-xs px-3 py-1.5 rounded uppercase tracking-widest">+18 Units This Month</div>
+                    </div>
+                    <div class="p-8">
+                        <div class="flex text-ben-gold mb-4 text-xl">★★★★★</div>
+                        <p class="text-gray-300 mb-8 text-sm leading-relaxed">"Joined MVP 2 months ago. Stopped throwing blind 10-leg parlays and started managing units exactly as Ben instructed. Up 35U this season. The discipline taught here is literal game changer."</p>
+                        <div class="border-t border-ben-border pt-4 flex items-center justify-between">
+                            <div>
+                                <p class="font-bold text-white font-sans">Jason D.</p>
+                                <p class="text-[10px] text-ben-neon uppercase tracking-widest font-bold mt-1 font-sans">Discord Member</p>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="bg-brand-card p-6 rounded-xl border border-gray-800">
-                    <svg class="w-10 h-10 text-brand-green mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                    <h4 class="text-lg font-bold text-white mb-2">Daily Card Access</h4>
-                    <p class="text-sm text-gray-400">Receive a fully researched betting card every single day before the games start. Never miss a sharp line.</p>
-                </div>
-                <div class="bg-brand-card p-6 rounded-xl border border-gray-800">
-                    <svg class="w-10 h-10 text-brand-green mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path></svg>
-                    <h4 class="text-lg font-bold text-white mb-2">In-Depth Writeups</h4>
-                    <p class="text-sm text-gray-400">We don't just give you a pick; we explain exactly WHY we are taking it with underlying stats and logic.</p>
-                </div>
-                <div class="bg-brand-card p-6 rounded-xl border border-gray-800">
-                    <svg class="w-10 h-10 text-brand-green mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"></path></svg>
-                    <h4 class="text-lg font-bold text-white mb-2">Private Discord</h4>
-                    <p class="text-sm text-gray-400">Join thousands of other like-minded bettors. Discuss live lines, hedge opportunities, and sweat the games together.</p>
-                </div>
-                <div class="bg-brand-card p-6 rounded-xl border border-gray-800">
-                    <svg class="w-10 h-10 text-brand-green mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    <h4 class="text-lg font-bold text-white mb-2">Live Betting Alerts</h4>
-                    <p class="text-sm text-gray-400">Sometimes the best edge happens in the 3rd quarter. Get instant push notifications for live betting angles.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="proof" class="py-24 bg-[#080D1A] border-y border-gray-900">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-display font-bold mb-4">The <span class="text-gradient">Wall of Wins</span></h2>
-                <p class="text-xl text-gray-400">Don't take our word for it. Look at the data from real members inside the MVP Discord.</p>
-            </div>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="bg-brand-card p-6 rounded-2xl border border-gray-800">
-                    <div class="flex items-center gap-1 text-yellow-500 mb-4">
-                        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                <div class="bg-ben-panel border border-ben-border rounded-2xl overflow-hidden shadow-2xl hover:-translate-y-2 transition-transform duration-500 group transform md:-translate-y-8">
+                    <div class="h-56 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1603030908455-4a4588c0acdd?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8bmJhJTIwcGxheWVyfGVufDB8fDB8fHww" alt="Basketball" class="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+                        <div class="absolute bottom-3 right-3 bg-ben-neon text-black font-bold font-sans text-xs px-3 py-1.5 rounded uppercase tracking-widest">NBA Props Swept</div>
                     </div>
-                    <p class="text-gray-300 italic mb-6">"I used to blow my bankroll every weekend doing 10 leg parlays. Since joining MVP, I followed the 1-unit rule strictly. I'm up 42 Units this season. It's boring but it pays the mortgage."</p>
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center font-bold text-gray-300">JD</div>
-                        <div>
-                            <p class="font-bold text-white text-sm">Jason D.</p>
-                            <p class="text-xs text-brand-green flex items-center gap-1"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg> Verified Whop Buyer</p>
+                    <div class="p-8">
+                        <div class="flex text-ben-gold mb-4 text-xl">★★★★★</div>
+                        <p class="text-gray-300 mb-8 text-sm leading-relaxed">"I used to blow my entire bankroll every weekend chasing losses. Ben's unit sizing guide saved my life. Slow and steady profits. $25 for 14 days is an absolute steal when one play covers the cost."</p>
+                        <div class="border-t border-ben-border pt-4 flex items-center justify-between">
+                            <div>
+                                <p class="font-bold text-white font-sans">Michael W.</p>
+                                <p class="text-[10px] text-ben-neon uppercase tracking-widest font-bold mt-1 font-sans">Verified Buyer</p>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="bg-brand-card p-6 rounded-2xl border border-gray-800">
-                    <div class="flex items-center gap-1 text-yellow-500 mb-4">
-                        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                <div class="bg-ben-panel border border-ben-border rounded-2xl overflow-hidden shadow-2xl hover:-translate-y-2 transition-transform duration-500 group">
+                    <div class="h-56 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1566932769119-7a1fb6d7ce23?q=80&w=800" alt="Analytics" class="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+                        <div class="absolute bottom-3 right-3 bg-ben-neon text-black font-bold font-sans text-xs px-3 py-1.5 rounded uppercase tracking-widest">Consistent ROI</div>
                     </div>
-                    <p class="text-gray-300 italic mb-6">"The Discord community alone is worth the $25. Finding out about late scratches and line movement before Vegas adjusts has saved me hundreds."</p>
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center font-bold text-gray-300">MC</div>
-                        <div>
-                            <p class="font-bold text-white text-sm">Mike C.</p>
-                            <p class="text-xs text-brand-green flex items-center gap-1"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg> Verified Whop Buyer</p>
+                    <div class="p-8">
+                        <div class="flex text-ben-gold mb-4 text-xl">★★★★★</div>
+                        <p class="text-gray-300 mb-8 text-sm leading-relaxed">"The transparency is what gets me. If we have a red day, they own it and post the recap. No deleting losing slips like Twitter gurus. But the green days far outweigh the red. Pure sharp logic."</p>
+                        <div class="border-t border-ben-border pt-4 flex items-center justify-between">
+                            <div>
+                                <p class="font-bold text-white font-sans">Tyler K.</p>
+                                <p class="text-[10px] text-ben-neon uppercase tracking-widest font-bold mt-1 font-sans">MVP Subscriber</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="bg-brand-card p-6 rounded-2xl border border-gray-800">
-                    <div class="flex items-center gap-1 text-yellow-500 mb-4">
-                        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                    </div>
-                    <p class="text-gray-300 italic mb-6">"$25 for 14 days is criminal. One average day covers the subscription cost for the whole month. Absolutely transparent tracking too."</p>
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center font-bold text-gray-300">TR</div>
-                        <div>
-                            <p class="font-bold text-white text-sm">Tyler R.</p>
-                            <p class="text-xs text-brand-green flex items-center gap-1"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg> Verified Whop Buyer</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="pricing" class="py-24 relative">
-        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1518063319789-7217e370fa53?q=80&w=2000')] bg-cover bg-center opacity-5"></div>
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-display font-bold mb-4">Choose Your Access Tier</h2>
-                <p class="text-xl text-gray-400">Instant access delivered via Whop and Discord.</p>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto items-center">
                 
-                <div class="bg-brand-card/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-800 flex flex-col h-[500px]">
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="py-40 bg-ben-base relative overflow-hidden border-b border-ben-border">
+        <div class="absolute top-0 right-0 w-[800px] h-[800px] bg-ben-neon/10 rounded-full blur-[150px] pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 w-[800px] h-[800px] bg-white/5 rounded-full blur-[150px] pointer-events-none"></div>
+        
+        <div class="max-w-[75rem] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-24">
+                <h2 class="text-5xl md:text-6xl lg:text-7xl font-sports text-white mb-6 tracking-wide">Choose Your <span class="text-gradient-neon">Weapon.</span></h2>
+                <p class="text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">Instant access delivered via Whop authentication. Join the most profitable community on the internet today.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-10 max-w-5xl mx-auto">
+                
+                <div class="bg-ben-panel border border-ben-border rounded-[2rem] p-10 md:p-14 flex flex-col h-full hover:border-white/30 transition-all shadow-2xl">
                     <div class="mb-8">
-                        <h3 class="text-2xl font-bold text-white mb-2">Free Plays</h3>
-                        <p class="text-gray-400 text-sm">Test the waters and see our analysis quality firsthand.</p>
+                        <h3 class="text-4xl font-sports text-white mb-2 tracking-wide">Free Plays</h3>
+                        <p class="text-sm text-gray-400 font-sans">Dip your toes in and see our analysis quality firsthand before committing.</p>
                     </div>
-                    <div class="mb-8">
-                        <span class="text-5xl font-display font-bold text-white">Free</span>
+                    <div class="mb-10 flex items-baseline gap-3 border-b border-ben-border pb-8">
+                        <span class="text-6xl md:text-7xl font-sports text-white tracking-wide">FREE</span>
+                        <span class="font-sans text-sm text-gray-500 font-bold uppercase tracking-wider">Entry</span>
                     </div>
-                    <ul class="space-y-4 mb-auto text-gray-300">
-                        <li class="flex items-center gap-3">
-                            <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                            Occasional Free Picks
+                    <ul class="space-y-6 mb-12 flex-grow font-sans">
+                        <li class="flex items-start gap-4 text-gray-400">
+                            <svg class="w-6 h-6 text-gray-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <span class="text-sm">Occasional Free Picks</span>
                         </li>
-                        <li class="flex items-center gap-3">
-                            <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                            Public Discord Chat
+                        <li class="flex items-start gap-4 text-gray-400">
+                            <svg class="w-6 h-6 text-gray-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <span class="text-sm">Public Discord Chat Access</span>
                         </li>
-                        <li class="flex items-center gap-3">
-                            <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                            Basic Betting Guides
+                        <li class="flex items-start gap-4 text-gray-600">
+                            <svg class="w-6 h-6 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                            <span class="text-sm line-through">NO VIP Premium Plays</span>
                         </li>
-                        <li class="flex items-center gap-3 text-gray-600">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                            No VIP Plays or Live Alerts
+                        <li class="flex items-start gap-4 text-gray-600">
+                            <svg class="w-6 h-6 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                            <span class="text-sm line-through">NO Direct 1-on-1 Support</span>
                         </li>
                     </ul>
-                    <a href="https://whop.com/betbigben/betbigbenfree?a=digitalartlab" target="_blank" class="w-full mt-8 block text-center border-2 border-gray-700 hover:border-gray-500 text-white font-bold py-4 rounded-xl transition-all">
-                        Join Free Chat
+                    <a href="https://whop.com/betbigben/betbigbenfree?a=digitalartlab" target="_blank" class="block w-full text-center btn-outline font-sans font-bold uppercase tracking-widest py-5 rounded-lg text-sm">
+                        Join Free Discord
                     </a>
                 </div>
 
-                <div class="bg-gradient-to-b from-[#111827] to-[#050A14] rounded-3xl p-1 border border-brand-green relative shadow-[0_0_40px_rgba(16,185,129,0.15)] transform md:scale-105 z-10 h-[540px]">
-                    <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-brand-green text-brand-darker font-extrabold px-6 py-1.5 rounded-full text-sm uppercase tracking-wider">
-                        Most Popular
+                <div class="glass-card rounded-[2.5rem] p-2 border-2 border-ben-neon shadow-[0_0_80px_rgba(0,255,163,0.15)] relative z-10 transform lg:scale-105">
+                    <div class="absolute -top-5 left-1/2 transform -translate-x-1/2 bg-ben-neon text-black font-sans font-bold px-8 py-2 rounded-full text-xs uppercase tracking-widest shadow-2xl whitespace-nowrap">
+                        The Sharp Edge
                     </div>
-                    <div class="bg-brand-card rounded-[23px] p-8 h-full flex flex-col">
+                    <div class="bg-ben-surface rounded-[2.2rem] p-10 md:p-14 flex flex-col h-full border border-ben-border">
                         <div class="mb-8">
-                            <h3 class="text-3xl font-display font-bold text-white mb-2">MVP Access</h3>
-                            <p class="text-emerald-400 text-sm font-medium">The complete professional betting toolkit.</p>
+                            <h3 class="text-4xl font-sports text-white mb-2 tracking-wide">MVP Access</h3>
+                            <p class="text-sm text-ben-text font-sans">The ultimate VIP community for serious, high-volume bettors.</p>
                         </div>
-                        <div class="mb-8">
-                            <span class="text-5xl font-display font-bold text-white">$25</span>
-                            <span class="text-xl text-gray-500">/ 14 days</span>
+                        <div class="mb-10 flex items-baseline gap-3 border-b border-ben-border pb-8">
+                            <span class="text-6xl md:text-7xl font-sports text-white tracking-wide">$25.00</span>
+                            <span class="font-sans text-sm text-gray-500 font-bold uppercase tracking-wider">/ 14 Days</span>
                         </div>
-                        <ul class="space-y-4 mb-auto text-gray-200 font-medium">
-                            <li class="flex items-center gap-3">
-                                <div class="bg-emerald-500/20 p-1 rounded-full"><svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg></div>
-                                ALL Daily VIP Premium Plays
+                        <ul class="space-y-6 mb-12 flex-grow font-sans">
+                            <li class="flex items-start gap-4">
+                                <div class="w-6 h-6 rounded-full bg-ben-neon/20 flex items-center justify-center text-ben-neon flex-shrink-0 mt-0.5"><svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></div>
+                                <span class="text-white font-medium text-sm">ALL Daily VIP Premium Plays</span>
                             </li>
-                            <li class="flex items-center gap-3">
-                                <div class="bg-emerald-500/20 p-1 rounded-full"><svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg></div>
-                                In-depth Game Analysis & Writeups
+                            <li class="flex items-start gap-4">
+                                <div class="w-6 h-6 rounded-full bg-ben-neon/20 flex items-center justify-center text-ben-neon flex-shrink-0 mt-0.5"><svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></div>
+                                <span class="text-white font-medium text-sm">In-depth Game Analysis & Writeups</span>
                             </li>
-                            <li class="flex items-center gap-3">
-                                <div class="bg-emerald-500/20 p-1 rounded-full"><svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg></div>
-                                Strict Unit Sizing System
+                            <li class="flex items-start gap-4">
+                                <div class="w-6 h-6 rounded-full bg-ben-neon/20 flex items-center justify-center text-ben-neon flex-shrink-0 mt-0.5"><svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></div>
+                                <span class="text-white font-medium text-sm">Strict Unit Tracking & Bankroll Rules</span>
                             </li>
-                            <li class="flex items-center gap-3">
-                                <div class="bg-emerald-500/20 p-1 rounded-full"><svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg></div>
-                                Direct Access to Ben & The Analysts
+                            <li class="flex items-start gap-4">
+                                <div class="w-6 h-6 rounded-full bg-ben-neon/20 flex items-center justify-center text-ben-neon flex-shrink-0 mt-0.5"><svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></div>
+                                <span class="text-white font-medium text-sm">Direct Access to Ben & The Team</span>
                             </li>
                         </ul>
-                        <a href="https://whop.com/betbigben/?productId=prod_cMOmQWxydVaEX&a=digitalartlab" target="_blank" class="w-full mt-8 block text-center bg-brand-green hover:bg-emerald-400 text-brand-darker text-lg font-bold py-4 rounded-xl transition-all btn-glow shadow-lg">
-                            Get Instant Access
+                        <a href="https://whop.com/betbigben/?productId=prod_cMOmQWxydVaEX&a=digitalartlab" target="_blank" class="block w-full text-center btn-neon font-sans font-bold uppercase tracking-widest py-6 rounded-xl text-lg shadow-2xl">
+                            Join MVP Access Now
                         </a>
+                        <div class="mt-6 text-center text-xs text-gray-500 font-sans font-medium">
+                            Secure checkout via Whop. Cancel anytime.
+                        </div>
                     </div>
                 </div>
 
@@ -424,84 +804,97 @@
         </div>
     </section>
 
-    <section id="faq" class="py-24 bg-brand-darker border-t border-gray-900" x-data="{ activeAccordion: null }">
-        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-4xl font-display font-bold text-center mb-12">Frequently Asked Questions</h2>
+    <section class="py-32 bg-ben-surface border-b border-ben-border" x-data="{ activeAccordion: null }">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 font-sans">
+            <h2 class="text-4xl md:text-5xl font-sports text-center mb-16 text-white tracking-wide">Frequently Asked <span class="text-ben-neon">Questions</span></h2>
             
-            <div class="space-y-4">
-                <div class="border border-gray-800 rounded-xl bg-brand-card overflow-hidden transition-all duration-300">
-                    <button @click="activeAccordion = activeAccordion === 1 ? null : 1" class="w-full flex justify-between items-center p-6 text-left focus:outline-none hover:bg-gray-800/50">
-                        <span class="text-lg font-bold text-white">Do I need a huge bankroll to start?</span>
-                        <svg :class="{'rotate-180': activeAccordion === 1}" class="w-6 h-6 text-brand-green transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            <div class="space-y-6">
+                <div class="bg-ben-base border border-ben-border rounded-xl overflow-hidden transition-all duration-300 hover:border-white/20 shadow-lg">
+                    <button @click="activeAccordion = activeAccordion === 1 ? null : 1" class="w-full px-8 py-8 text-left flex justify-between items-center focus:outline-none">
+                        <span class="font-bold text-white text-lg">Are these picks guaranteed to win?</span>
+                        <svg :class="{'rotate-180 text-ben-neon': activeAccordion === 1}" class="w-8 h-8 text-gray-500 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                     </button>
                     <div x-show="activeAccordion === 1" x-collapse>
-                        <div class="p-6 pt-0 text-gray-400 leading-relaxed border-t border-gray-800 mt-2">
-                            Not at all. Whether your total bankroll is $100 or $10,000, our system works identically. We teach you to bet in "Units" (typically 1% of your bankroll). The math is the same, and as your bankroll grows, your unit size grows proportionally.
+                        <div class="px-8 pb-8 text-gray-400 text-base leading-relaxed border-t border-ben-border pt-6">
+                            No one can guarantee a 100% win rate in sports betting. Anyone who does is lying to you. What we provide is a statistical edge (+EV) and strict bankroll management rules to ensure long-term profitability over variance. We have losing days, but our winning days outpace them mathematically.
                         </div>
                     </div>
                 </div>
 
-                <div class="border border-gray-800 rounded-xl bg-brand-card overflow-hidden transition-all duration-300">
-                    <button @click="activeAccordion = activeAccordion === 2 ? null : 2" class="w-full flex justify-between items-center p-6 text-left focus:outline-none hover:bg-gray-800/50">
-                        <span class="text-lg font-bold text-white">What sports do you cover?</span>
-                        <svg :class="{'rotate-180': activeAccordion === 2}" class="w-6 h-6 text-brand-green transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                <div class="bg-ben-base border border-ben-border rounded-xl overflow-hidden transition-all duration-300 hover:border-white/20 shadow-lg">
+                    <button @click="activeAccordion = activeAccordion === 2 ? null : 2" class="w-full px-8 py-8 text-left flex justify-between items-center focus:outline-none">
+                        <span class="font-bold text-white text-lg">Do I need a huge bankroll to start?</span>
+                        <svg :class="{'rotate-180 text-ben-neon': activeAccordion === 2}" class="w-8 h-8 text-gray-500 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                     </button>
                     <div x-show="activeAccordion === 2" x-collapse>
-                        <div class="p-6 pt-0 text-gray-400 leading-relaxed border-t border-gray-800 mt-2">
-                            We cover all major markets where we find a statistical edge. This primarily includes NFL, NBA, MLB, NHL, and major College Sports (NCAAF & NCAAB). We follow the value, not just the primetime games.
+                        <div class="px-8 pb-8 text-gray-400 text-base leading-relaxed border-t border-ben-border pt-6">
+                            Not at all. Whether your total bankroll is $100 or $10,000, our system works identically. We teach you to bet in "Units" (typically 1-5% of your bankroll). The math is the same, and as your bankroll grows, your unit size grows proportionally. See the calculator above to run your own numbers.
                         </div>
                     </div>
                 </div>
 
-                <div class="border border-gray-800 rounded-xl bg-brand-card overflow-hidden transition-all duration-300">
-                    <button @click="activeAccordion = activeAccordion === 3 ? null : 3" class="w-full flex justify-between items-center p-6 text-left focus:outline-none hover:bg-gray-800/50">
-                        <span class="text-lg font-bold text-white">Are your picks guaranteed to win?</span>
-                        <svg :class="{'rotate-180': activeAccordion === 3}" class="w-6 h-6 text-brand-green transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                <div class="bg-ben-base border border-ben-border rounded-xl overflow-hidden transition-all duration-300 hover:border-white/20 shadow-lg">
+                    <button @click="activeAccordion = activeAccordion === 3 ? null : 3" class="w-full px-8 py-8 text-left flex justify-between items-center focus:outline-none">
+                        <span class="font-bold text-white text-lg">What sports do you cover?</span>
+                        <svg :class="{'rotate-180 text-ben-neon': activeAccordion === 3}" class="w-8 h-8 text-gray-500 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                     </button>
                     <div x-show="activeAccordion === 3" x-collapse>
-                        <div class="p-6 pt-0 text-gray-400 leading-relaxed border-t border-gray-800 mt-2">
-                            No. Anyone who guarantees a 100% win rate in sports betting is lying to you. Even the sharpest bettors in the world have losing days and losing weeks. What we provide is a proven long-term mathematical edge over the books to ensure profitability over the season.
+                        <div class="px-8 pb-8 text-gray-400 text-base leading-relaxed border-t border-ben-border pt-6">
+                            We cover all major markets where we can find a statistical edge against the books. This primarily includes NBA (game lines and player props), NFL, MLB, NHL, and UFC/MMA. We follow the value, not just the primetime TV games.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-ben-base border border-ben-border rounded-xl overflow-hidden transition-all duration-300 hover:border-white/20 shadow-lg">
+                    <button @click="activeAccordion = activeAccordion === 4 ? null : 4" class="w-full px-8 py-8 text-left flex justify-between items-center focus:outline-none">
+                        <span class="font-bold text-white text-lg">Why should I use the links on this website?</span>
+                        <svg :class="{'rotate-180 text-ben-neon': activeAccordion === 4}" class="w-8 h-8 text-gray-500 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div x-show="activeAccordion === 4" x-collapse>
+                        <div class="px-8 pb-8 text-gray-400 text-base leading-relaxed border-t border-ben-border pt-6">
+                            This is an official affiliate promotional page. By clicking the "Join MVP Access" button here, you are routed directly to the secure Whop checkout for BetBigBen. We earn a small commission at absolutely zero extra cost to you, which allows us to keep evaluating the top 1% of betting communities.
                         </div>
                     </div>
                 </div>
 
-                <div class="border border-gray-800 rounded-xl bg-brand-card overflow-hidden transition-all duration-300">
-                    <button @click="activeAccordion = activeAccordion === 4 ? null : 4" class="w-full flex justify-between items-center p-6 text-left focus:outline-none hover:bg-gray-800/50">
-                        <span class="text-lg font-bold text-white">Why should I join using the links on this page?</span>
-                        <svg :class="{'rotate-180': activeAccordion === 4}" class="w-6 h-6 text-brand-green transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                    </button>
-                    <div x-show="activeAccordion === 4" x-collapse>
-                        <div class="p-6 pt-0 text-gray-400 leading-relaxed border-t border-gray-800 mt-2">
-                            I am an official affiliate partner. By clicking the buttons on this page, you get instant, secure access to the BetBigBen Whop portal, and I earn a small commission from Whop at no extra cost to you. It helps me continue researching and curating the top 1% of communities.
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
 
-    <footer class="bg-brand-dark border-t border-gray-900 pt-16 pb-8">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-display font-bold text-white mb-6">Ready to beat the books?</h2>
-                <a href="https://whop.com/betbigben/?productId=prod_cMOmQWxydVaEX&a=digitalartlab" target="_blank" class="inline-block bg-brand-green hover:bg-emerald-400 text-brand-darker font-bold py-4 px-12 rounded-full transition-all btn-glow text-lg">
-                    Join MVP Access Today
-                </a>
+    <footer class="bg-ben-base pt-24 pb-12 border-t border-ben-border">
+        <div class="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-16 border-b border-ben-border pb-16">
+                
+                <div class="lg:col-span-5">
+                    <div class="flex items-center gap-4 mb-8">
+                        <div class="w-12 h-12 rounded-xl bg-ben-surface border border-ben-border flex items-center justify-center shadow-lg">
+                            <svg class="w-7 h-7 text-ben-neon" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                        </div>
+                        <span class="font-sports text-3xl tracking-widest text-white uppercase leading-none">BetBig<span class="text-ben-neon">Ben</span></span>
+                    </div>
+                    <p class="text-base text-gray-500 leading-relaxed pr-8 font-medium mb-10 font-sans">
+                        Stop throwing away money on emotional parlays. Join the elite network of data-driven bettors and start treating your bankroll like an investment portfolio.
+                    </p>
+                    <a href="https://whop.com/betbigben/?productId=prod_cMOmQWxydVaEX&a=digitalartlab" target="_blank" class="inline-block bg-ben-surface border border-ben-neon text-ben-neon hover:bg-ben-neon hover:text-black font-bold font-sans text-xs uppercase tracking-widest px-10 py-4 rounded-lg transition-all shadow-[0_0_20px_rgba(0,255,163,0.15)]">
+                        Gain MVP Access
+                    </a>
+                </div>
+                
+                <div class="lg:col-span-7">
+                    <div class="text-[11px] text-gray-500 space-y-6 leading-relaxed font-semibold uppercase tracking-wider font-sans bg-ben-surface/50 p-10 rounded-2xl border border-ben-border">
+                        <p><strong class="text-gray-300">Affiliate Disclosure:</strong> This website operates as an independent affiliate partner. We earn a commission when you purchase Whop access via the links on this page. This does not affect the price you pay and helps support our curation platform.</p>
+                        <p><strong class="text-gray-300">Risk & Earnings Disclaimer:</strong> Sports betting involves significant risk and is not suitable for everyone. Do not bet money you cannot afford to lose. The ROIs, unit counts, and revenue examples shown on this site (including the calculator simulator) are for illustrative purposes to explain bankroll management. We do not guarantee that you will make money. Past success of community members does not guarantee your future results. If you have a gambling problem, please seek help. All subscriptions are processed securely via Whop.</p>
+                    </div>
+                </div>
+                
             </div>
             
-            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-                <div class="flex items-center gap-2">
-                    <span class="font-display font-bold text-xl tracking-tighter text-gray-400">
-                        BET<span class="text-gray-600">BIG</span>BEN
-                    </span>
-                </div>
-                <div class="text-xs text-gray-600 text-center md:text-left max-w-2xl">
-                    <p class="mb-2"><strong class="text-gray-500">Affiliate Disclosure:</strong> This website is an independent promotional page. We contain affiliate links to Whop, meaning we may receive a commission for purchases made through our links at no extra cost to you.</p>
-                    <p><strong class="text-gray-500">Risk Warning:</strong> Sports betting involves risk. Past performance is no guarantee of future results. Only bet with money you can afford to lose. If you or someone you know has a gambling problem, please seek help.</p>
-                </div>
-            </div>
-            <div class="text-center text-xs text-gray-700 mt-8">
-                &copy; 2026 Affiliate Curation. All rights reserved. Not affiliated directly with Vegas Casinos or Sportsbooks.
+            <div class="flex flex-col md:flex-row justify-between items-center mt-10 font-sans text-xs text-gray-600 font-bold uppercase tracking-widest">
+                <p>&copy; 2026 Sharp Analytics Affiliates. All Rights Reserved.</p>
+                <p class="mt-4 md:mt-0 flex items-center gap-3 text-ben-text">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+                    Secure Checkout Powered by Whop
+                </p>
             </div>
         </div>
     </footer>
